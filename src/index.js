@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -9,6 +10,7 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
   document.getElementById('root')
+  //document.querySelector('#app')
 );
 
 // If you want to start measuring performance in your app, pass a function
