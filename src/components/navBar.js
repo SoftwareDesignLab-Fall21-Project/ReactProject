@@ -14,6 +14,9 @@ function NavBar(){
                 <Typography variant="h6" color="inherit" component="div">
                     <Link to="/datasets" className="nav-link">Datasets</Link>
                 </Typography>
+                <Typography variant="h6" color="inherit" component="div">
+                    <Link to="/hardware" className="nav-link">Hardware</Link>
+                </Typography>
           </Toolbar>
         </AppBar>
     );
