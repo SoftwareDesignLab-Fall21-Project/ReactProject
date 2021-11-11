@@ -11,7 +11,6 @@ import {Card, CardHeader, Button, CardContent, TextField} from "@mui/material";
 function App() {
 
     const [signin, setSignin] = useState(false);
-
     if(!signin){
         return (
             <div>
@@ -42,7 +41,6 @@ function App() {
                 <Router>
                     <NavBar/>
                     <div id="page-container">
-
                     </div>
                     <Switch>
                         <Route path="/" exact component={Landing} />
