@@ -11,7 +11,7 @@ function HardwareSet(props){
     return (
         <Card className="hardware-card">
             <CardContent>
-                <h2>HWSET {props.name}</h2>
+                <h2>{props.name}</h2>
                 <h5>Capacity: {capacity}</h5>
                 <h5>Available: {available}</h5>
                 <TextField id="standard-basic" label="# Sets to Checkout" variant="standard" onKeyPress={(event) => {

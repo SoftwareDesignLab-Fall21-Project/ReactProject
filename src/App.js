@@ -19,8 +19,9 @@ function App() {
                     <Route path="/datasets" exact component={DatasetPage}/>
                     <Route path="/hardware" exact component={HardwarePage}/>
                 </Switch>
-                
+            
             </Router>
+            
 
         </>
   );
