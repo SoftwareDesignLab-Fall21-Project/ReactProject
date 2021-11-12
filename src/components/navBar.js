@@ -44,7 +44,7 @@ function NavBar({ SignIn }) {
                                             SignIn = (response.data['success']);
                                             // <Redirect to ="http://localhost:3000/datasets" />
                                             var Router = require('react-router');
-                                            Router.browserHistory.push('http://localhost:3000/datasets');
+                                            Router.browserHistory.push('http://localhost:8080/datasets');
                                         }
                                     )
                                     }}>

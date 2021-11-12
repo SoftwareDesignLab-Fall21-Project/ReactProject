@@ -34,9 +34,10 @@ function HardwarePage(){
 
     useEffect(()=>{
 
+        console.log('got here');
         const fetchData = async () => {
             const result = await axios(
-                'get-db'
+                'http://localhost:8080/get-hardware',
             );
             console.log('got here');
             console.log(result);
