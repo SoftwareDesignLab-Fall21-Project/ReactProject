@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 import {AppBar, IconButton, Toolbar, Typography, Button, CardContent, TextField, Card} from "@mui/material";
 import './navBar.css'
 import {Link} from "react-router-dom";
+import { Redirect } from 'react-router';
+import axios from 'axios';
+import {signedInContext} from "../App.js";
 
 function NavBar() {
-    const [signin, setSignin] = useState(true);
+    const signin = useContext(signedInContext)[0];
+    const setSignIn = useContext(signedInContext)[1];
     if (signin) {
         return (
             <AppBar className='navbar' position="static">
@@ -30,7 +34,22 @@ function NavBar() {
                     <Typography variant="h6" color="inherit" component="div">
                         <Link to="/landing" className="nav-link">
                             <Button variant="outlined" color="info"
-                                onClick={() => {setSignin(false);}}>
+                                onClick={() => {
+                                    const fetchData = async () => {
+                                        const result = await axios(
+                                            'logout',
+                                        );
+                                        return result;
+                                    };
+                                    fetchData().then(
+                                        function(response){
+                                            console.log(response.data['success'] + '-- nav');
+                                            setSignIn(response.data['success']);
+                                            // var Router = require('react-router');
+                                            // Router.browserHistory.push('/datasets');
+                                        }
+                                    )
+                                    }}>
                                 Logout
                                </Button>
                         </Link>
@@ -57,7 +76,7 @@ function NavBar() {
                 </div>
             </CardContent>
             <Button id="login-button" variant="contained" onClick={() => {
-                setSignin(true);
+                setSignIn(true);
             }}>Development Signin</Button>
         </Card>
         )
