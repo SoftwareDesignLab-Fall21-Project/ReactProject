@@ -94,9 +94,6 @@ function App() {
                         </form>
                     </CardContent>
                 </Card>
-                <Button id="login-button" variant="contained" onClick={() => {
-                    setSignin(true);
-                }}>Development Signin</Button>
             </div>
         );
     }else{
