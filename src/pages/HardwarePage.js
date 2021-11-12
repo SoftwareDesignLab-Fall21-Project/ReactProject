@@ -29,11 +29,12 @@ function HardwarePage(){
 
     useEffect(()=>{
 
-        console.log('got here');
         const fetchData = async () => {
             const result = await axios(
-                'http://192.168.1.11:9999/get-hardware',
+                'get-hardware',
             );
+            console.log('got here');
+            console.log(result);
 
             return result;
         };
