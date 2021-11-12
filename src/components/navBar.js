@@ -1,15 +1,15 @@
-import React, {useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 import {AppBar, IconButton, Toolbar, Typography, Button, CardContent, TextField, Card} from "@mui/material";
 import './navBar.css'
 import {Link, useHistory} from "react-router-dom";
 import { Route , withRouter} from 'react-router-dom';
 import axios from 'axios';
+import {signedInContext} from "../App.js";
 
-function NavBar({ SignIn }) {
-
-    let history = useHistory();
-
-    if (SignIn) {
+function NavBar() {
+    const signin = useContext(signedInContext)[0];
+    const setSignIn = useContext(signedInContext)[1];
+    if (signin) {
         return (
             <AppBar className='navbar' position="static">
                 <Toolbar variant="dense">
@@ -44,9 +44,15 @@ function NavBar({ SignIn }) {
                                     fetchData().then(
                                         function(response){
                                             console.log(response.data['success'] + '-- nav');
+<<<<<<< HEAD
                                             SignIn = (response.data['success']);
                                             // <Redirect to ="http://localhost:3000/datasets" />
                                             //history.push("/");
+=======
+                                            setSignIn(response.data['success']);
+                                            // var Router = require('react-router');
+                                            // Router.browserHistory.push('/datasets');
+>>>>>>> 1349ecee02548637395ce4283150fad2bb809b00
                                         }
                                     )
                                     }}>
@@ -76,7 +82,7 @@ function NavBar({ SignIn }) {
                 </div>
             </CardContent>
             <Button id="login-button" variant="contained" onClick={() => {
-                SignIn = true;
+                setSignIn(true);
             }}>Development Signin</Button>
         </Card>
         )

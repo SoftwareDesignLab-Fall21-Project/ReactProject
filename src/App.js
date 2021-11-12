@@ -1,14 +1,16 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
-import React, { useState, useEffect, useFocusEffect } from 'react';
+import React, {useState, useEffect, createContext} from 'react';
 import NavBar from "./components/navBar";
 import Landing from "./pages/Landing";
 import DatasetPage from "./pages/DatasetPage";
 import HardwarePage from './pages/HardwarePage';
 import {Card, CardHeader, Button, CardContent, TextField} from "@mui/material";
 import axios from 'axios';
-import { withRouter} from 'react-router-dom';
+import {siLK} from "@mui/material/locale";
+
+
+export const signedInContext = createContext();
 
 function App() {
 
@@ -93,20 +95,24 @@ function App() {
                         </form>
                     </CardContent>
                 </Card>
-                <Button id="login-button" variant="contained" onClick={() => {
-                    setSignin(true);
-                }}>Development Signin</Button>
             </div>
         );
     }else{
         return (
             <>
+<<<<<<< HEAD
                 <Router>
                     <NavBar
                         SignIn = {signin}
                         // history = {history}
                     />
                     <div id="page-container">
+=======
+                <signedInContext.Provider value={[signin, setSignin]}>
+                   <Router>
+                        <NavBar/>
+                        <div id="page-container">
+>>>>>>> 1349ecee02548637395ce4283150fad2bb809b00
                     </div>
                     <Switch>
                         <Route path="/" exact component={Landing} />
@@ -115,10 +121,9 @@ function App() {
                         </Route>
                         <Route path="/hardware" exact component={HardwarePage}/>
                     </Switch>
-                
-                </Router>
-                
 
+                </Router>
+                </signedInContext.Provider>
             </>
         );
     }
@@ -127,3 +132,4 @@ function App() {
 }
 
 export default App;
+
