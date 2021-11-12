@@ -64,7 +64,9 @@ function App() {
         return (
             <>
                 <Router>
-                    <NavBar/>
+                    <NavBar
+                        SignIn = {signin}
+                    />
                     <div id="page-container">
                     </div>
                     <Switch>
