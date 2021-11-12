@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react';
 import "./HardwarePage.css";
 import HardwareList from "../components/HardwareList";
 import axios from 'axios';
+import ProjectList from '../components/ProjectList';
 
 function HardwarePage(){
 
+    //hardware sets
     const [name_1, setName_1] = useState([])
     const [capacity_1, setCapacity_1] = useState([])
     const [available_1, setAvailable_1] = useState([])
@@ -12,6 +14,9 @@ function HardwarePage(){
     const [capacity_2, setCapacity_2] = useState([])
     const [available_2, setAvailable_2] = useState([])
     const [isLoading, setLoading] = useState(true)
+
+    //projects
+    const [projects, setProjects] = useState([])
 
     // useEffect(()=>{
     //     fetch('/hwcapacity', {
@@ -31,7 +36,7 @@ function HardwarePage(){
 
         const fetchData = async () => {
             const result = await axios(
-                'get-hardware',
+                'get-hardware'
             );
             console.log('got here');
             console.log(result);
@@ -67,6 +72,7 @@ function HardwarePage(){
                 available_1 = {available_1}
                 available_2 = {available_2}
             />
+            <ProjectList/>
         </div>
     );
     }
