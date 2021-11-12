@@ -41,12 +41,12 @@ function HardwarePage(){
         fetchData().then(
             function(response){
                 console.log(response);
-                setName_1(response.data.result[0]['Name']);
-                setCapacity_1(response.data.result[0]['Capacity']);
-                setAvailable_1(response.data.result[0]['Available']);
-                setName_2(response.data.result[1]['Name']);
-                setCapacity_2(response.data.result[1]['Capacity']);
-                setAvailable_2(response.data.result[1]['Available']);
+                setName_1(response.data[0]['Name']);
+                setCapacity_1(response.data[0]['Capacity']);
+                setAvailable_1(response.data[0]['Available']);
+                setName_2(response.data[1]['Name']);
+                setCapacity_2(response.data[1]['Capacity']);
+                setAvailable_2(response.data[1]['Available']);
                 setLoading(false);
             }
         )
