@@ -6,6 +6,19 @@
     background-color: red;
 }
 
+h1{
+    font-size: 40px;
+    color: lightblue;
+    text-align: center;
+    text-shadow: 2px 2px 5px #53A4F7;
+}
+
+p{
+   font-size: 20px;
+    color: lightblue;
+    text-shadow: 2px 2px 5px #53A4F7;
+    margin-bottom: 0px;
+}
 
 .sign-in-dialog{
     display: flex;
