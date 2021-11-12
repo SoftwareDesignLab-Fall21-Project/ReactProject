@@ -1,0 +1,15 @@
+.dataset-list{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: white;
+}
+
+.dataset-list-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    margin-left: min(15%,100px);
+    margin-right: min(15%,100px);
+    height: 700px;
+}
