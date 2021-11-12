@@ -1,14 +1,18 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useFocusEffect } from 'react';
 import NavBar from "./components/navBar";
 import Landing from "./pages/Landing";
 import DatasetPage from "./pages/DatasetPage";
 import HardwarePage from './pages/HardwarePage';
 import {Card, CardHeader, Button, CardContent, TextField} from "@mui/material";
 import axios from 'axios';
+import { withRouter} from 'react-router-dom';
 
 function App() {
+
+    let history = useHistory();
 
     const [signin, setSignin] = useState(false);
 
@@ -22,13 +26,16 @@ function App() {
         };
         fetchData().then(
             function(response){
+                console.log("useEffect -- App");
                 console.log(response.data['success']);
                 if(response.data['success']=="true"){
                     setSignin(true);
+                }else{
+                    setSignin(false);
                 }
             }
         )
-    }, []);
+    }, [history]);
 
 
     if(!signin){
@@ -66,6 +73,7 @@ function App() {
                 <Router>
                     <NavBar
                         SignIn = {signin}
+                        // history = {history}
                     />
                     <div id="page-container">
                     </div>

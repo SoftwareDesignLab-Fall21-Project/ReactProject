@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import {AppBar, IconButton, Toolbar, Typography, Button, CardContent, TextField, Card} from "@mui/material";
 import './navBar.css'
-import {Link} from "react-router-dom";
-import { Redirect } from 'react-router';
+import {Link, useHistory} from "react-router-dom";
+import { Route , withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 function NavBar({ SignIn }) {
+
+    let history = useHistory();
+
     if (SignIn) {
         return (
             <AppBar className='navbar' position="static">
@@ -29,7 +32,7 @@ function NavBar({ SignIn }) {
                     </Typography>
                     <div style={{marginRight: "1%"}}/>
                     <Typography variant="h6" color="inherit" component="div">
-                        <Link to="/landing" className="nav-link">
+                        <Link to="/" className="nav-link">
                             <Button variant="outlined" color="info"
                                 onClick={() => {
                                     const fetchData = async () => {
@@ -43,8 +46,7 @@ function NavBar({ SignIn }) {
                                             console.log(response.data['success'] + '-- nav');
                                             SignIn = (response.data['success']);
                                             // <Redirect to ="http://localhost:3000/datasets" />
-                                            var Router = require('react-router');
-                                            Router.browserHistory.push('http://localhost:3000/datasets');
+                                            //history.push("/");
                                         }
                                     )
                                     }}>
