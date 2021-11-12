@@ -18,17 +18,22 @@ function App() {
                 <Card className="sign-in-dialog">
                     <CardContent>
                         <h4>Already have an account?</h4>
-                        <TextField className="username-password" id="standard-basic" label="Username" variant="standard" />
-                        <TextField className="username-password" id="standard-basic" label="Password" variant="standard" />
-                        <div id="button-wrapper">
-                            <Button id="login-button" variant="outlined">Sign In</Button>
-                        </div>
+                        <form id="loginForm" action="/login" method="POST">
+                            <TextField className="username-password" id="standard-basic" label="Username" variant="standard" name="username"/>
+                            <TextField className="username-password" id="standard-basic" label="Password" variant="standard" name="password"/>
+                            <div id="button-wrapper">
+                                <Button id="login-button" variant="outlined" type="submit" form="loginForm">Log In</Button>
+                                
+                            </div>
+                        </form>
                         <h4>New User?</h4>
-                        <TextField className="username-password" id="standard-basic" label="New Username" variant="standard" />
-                        <TextField className="username-password" id="standard-basic" label="New Password" variant="standard" />
-                        <div id="button-wrapper">
-                            <Button id="login-button" variant="outlined">Sign Up</Button>
-                        </div>
+                        <form id="signupForm" action="/signup" method="POST">
+                            <TextField className="username-password" id="standard-basic" label="New Username" variant="standard" name="newuser" />
+                            <TextField className="username-password" id="standard-basic" label="New Password" variant="standard" name="newpass"/>
+                            <div id="button-wrapper">
+                                <Button id="login-button" variant="outlined" type="submit">Sign Up</Button>
+                            </div>
+                        </form>
                     </CardContent>
                 </Card>
                 <Button id="login-button" variant="contained" onClick={() => {
