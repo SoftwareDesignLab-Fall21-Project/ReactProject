@@ -6,11 +6,31 @@ import Landing from "./pages/Landing";
 import DatasetPage from "./pages/DatasetPage";
 import HardwarePage from './pages/HardwarePage';
 import {Card, CardHeader, Button, CardContent, TextField} from "@mui/material";
-
+import axios from 'axios';
 
 function App() {
 
     const [signin, setSignin] = useState(false);
+
+    useEffect(()=>{
+
+        const fetchData = async () => {
+            const result = await axios(
+                'get-user',
+            );
+            return result;
+        };
+        fetchData().then(
+            function(response){
+                console.log(response.data['success']);
+                if(response.data['success']=="true"){
+                    setSignin(true);
+                }
+            }
+        )
+    }, []);
+
+
     if(!signin){
         return (
             <div>
