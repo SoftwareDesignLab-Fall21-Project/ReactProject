@@ -7,17 +7,10 @@ function DatasetPage(){
     const [isLoading, setLoading] = useState(true)
     const [items, setItems] = useState([])
 
-    const fetchData = async () => {
-        const result = await axios(
-            'http://localhost:8080/static/datasets/dump.json',
-        );
-
-        return result;
-    };
 
 
     useEffect(()=>{
-        fetch('http://localhost:8080/static/datasets/dump.json',
+        fetch('/static/datasets/dump.json',
                 {"method":"GET"}
             )
             .then(response => {

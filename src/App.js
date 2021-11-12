@@ -10,7 +10,33 @@ import axios from 'axios';
 
 function App() {
 
+    const [loginResponse, setLoginResponse] = useState(null);
     const [signin, setSignin] = useState(false);
+
+
+    const handleSubmitLogin = (Event) => {
+        Event.preventDefault();
+        const data = new FormData(Event.target);
+
+        fetch('/login', {
+          method: 'POST',
+          body: data,
+        }).then((response) => {
+            setLoginResponse(response);
+        });
+    }
+
+    const handleSubmitRegister = (Event) => {
+        Event.preventDefault();
+        const data = new FormData(Event.target);
+
+        fetch('/register', {
+          method: 'POST',
+          body: data,
+        }).then((response) => {
+            setLoginResponse(response);
+        });
+    }
 
     useEffect(()=>{
 
@@ -23,12 +49,12 @@ function App() {
         fetchData().then(
             function(response){
                 console.log(response.data['success']);
-                if(response.data['success']=="true"){
+                if (response.data['success'] === "true") {
                     setSignin(true);
                 }
             }
         )
-    }, []);
+    }, [signin, loginResponse]);
 
 
     if(!signin){
@@ -37,20 +63,27 @@ function App() {
                 <Card className="sign-in-dialog">
                     <CardContent>
                         <h4>Already have an account?</h4>
-                        <form id="loginForm" action="/login" method="POST">
-                            <TextField className="username-password" id="standard-basic" label="Username" variant="standard" name="username"/>
-                            <TextField className="username-password" id="standard-basic" label="Password" variant="standard" name="password"/>
+                        <form id="loginForm" action="/login" method="POST" onSubmit={handleSubmitLogin}>
+                            <TextField className="username-password" id="standard-basic" label="Username"
+                                       variant="standard" name="username"/>
+                            <TextField className="username-password" id="standard-basic" label="Password"
+                                       variant="standard" name="password"/>
                             <div id="button-wrapper">
-                                <Button id="login-button" variant="outlined" type="submit" form="loginForm">Log In</Button>
-                                
+                                <Button id="login-button" variant="outlined" type="submit" form="loginForm">
+                                    Log In
+                                </Button>
                             </div>
                         </form>
                         <h4>New User?</h4>
-                        <form id="signupForm" action="/signup" method="POST">
-                            <TextField className="username-password" id="standard-basic" label="New Username" variant="standard" name="newuser" />
-                            <TextField className="username-password" id="standard-basic" label="New Password" variant="standard" name="newpass"/>
+                        <form id="signupForm" action="/signup" method="POST" onSubmit={handleSubmitRegister}>
+                            <TextField className="username-password" id="standard-basic" label="New Username"
+                                       variant="standard" name="newuser"/>
+                            <TextField className="username-password" id="standard-basic" label="New Password"
+                                       variant="standard" name="newpass"/>
                             <div id="button-wrapper">
-                                <Button id="login-button" variant="outlined" type="submit">Sign Up</Button>
+                                <Button id="login-button" variant="outlined" type="submit">
+                                    Sign Up
+                                </Button>
                             </div>
                         </form>
                     </CardContent>
