@@ -1,12 +1,16 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, createContext} from 'react';
 import NavBar from "./components/navBar";
 import Landing from "./pages/Landing";
 import DatasetPage from "./pages/DatasetPage";
 import HardwarePage from './pages/HardwarePage';
 import {Card, CardHeader, Button, CardContent, TextField} from "@mui/material";
 import axios from 'axios';
+import {siLK} from "@mui/material/locale";
+
+
+export const signedInContext = createContext();
 
 function App() {
 
@@ -51,6 +55,8 @@ function App() {
                 console.log(response.data['success']);
                 if (response.data['success'] === "true") {
                     setSignin(true);
+                }else{
+                    setSignin(false);
                 }
             }
         )
@@ -96,11 +102,10 @@ function App() {
     }else{
         return (
             <>
-                <Router>
-                    <NavBar
-                        SignIn = {signin}
-                    />
-                    <div id="page-container">
+                <signedInContext.Provider value={[signin, setSignin]}>
+                   <Router>
+                        <NavBar/>
+                        <div id="page-container">
                     </div>
                     <Switch>
                         <Route path="/" exact component={Landing} />
@@ -109,10 +114,9 @@ function App() {
                         </Route>
                         <Route path="/hardware" exact component={HardwarePage}/>
                     </Switch>
-                
-                </Router>
-                
 
+                </Router>
+                </signedInContext.Provider>
             </>
         );
     }
@@ -121,3 +125,4 @@ function App() {
 }
 
 export default App;
+

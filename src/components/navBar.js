@@ -1,12 +1,15 @@
-import React, {useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 import {AppBar, IconButton, Toolbar, Typography, Button, CardContent, TextField, Card} from "@mui/material";
 import './navBar.css'
 import {Link} from "react-router-dom";
 import { Redirect } from 'react-router';
 import axios from 'axios';
+import {signedInContext} from "../App.js";
 
-function NavBar({ SignIn }) {
-    if (SignIn) {
+function NavBar() {
+    const signin = useContext(signedInContext)[0];
+    const setSignIn = useContext(signedInContext)[1];
+    if (signin) {
         return (
             <AppBar className='navbar' position="static">
                 <Toolbar variant="dense">
@@ -41,9 +44,9 @@ function NavBar({ SignIn }) {
                                     fetchData().then(
                                         function(response){
                                             console.log(response.data['success'] + '-- nav');
-                                            SignIn = (response.data['success']);
-                                            var Router = require('react-router');
-                                            Router.browserHistory.push('/datasets');
+                                            setSignIn(response.data['success']);
+                                            // var Router = require('react-router');
+                                            // Router.browserHistory.push('/datasets');
                                         }
                                     )
                                     }}>
@@ -73,7 +76,7 @@ function NavBar({ SignIn }) {
                 </div>
             </CardContent>
             <Button id="login-button" variant="contained" onClick={() => {
-                SignIn = true;
+                setSignIn(true);
             }}>Development Signin</Button>
         </Card>
         )
