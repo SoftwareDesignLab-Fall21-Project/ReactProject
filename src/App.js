@@ -100,19 +100,10 @@ function App() {
     }else{
         return (
             <>
-<<<<<<< HEAD
-                <Router>
-                    <NavBar
-                        SignIn = {signin}
-                        // history = {history}
-                    />
-                    <div id="page-container">
-=======
                 <signedInContext.Provider value={[signin, setSignin]}>
                    <Router>
                         <NavBar/>
                         <div id="page-container">
->>>>>>> 1349ecee02548637395ce4283150fad2bb809b00
                     </div>
                     <Switch>
                         <Route path="/" exact component={Landing} />

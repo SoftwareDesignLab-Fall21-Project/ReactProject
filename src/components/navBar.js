@@ -44,15 +44,9 @@ function NavBar() {
                                     fetchData().then(
                                         function(response){
                                             console.log(response.data['success'] + '-- nav');
-<<<<<<< HEAD
-                                            SignIn = (response.data['success']);
-                                            // <Redirect to ="http://localhost:3000/datasets" />
-                                            //history.push("/");
-=======
                                             setSignIn(response.data['success']);
                                             // var Router = require('react-router');
                                             // Router.browserHistory.push('/datasets');
->>>>>>> 1349ecee02548637395ce4283150fad2bb809b00
                                         }
                                     )
                                     }}>
