@@ -1,3 +1,9 @@
 .project-table{
-    margin-top: 5%;
+    margin-top: 22px;
+    margin-right: 5%;
+}
+
+.project-list{
+    display: flex;
+    width: max(400px, 70%);
 }

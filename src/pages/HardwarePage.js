@@ -80,7 +80,7 @@ function HardwarePage(){
     }else{
         return (
             <hwSetContext.Provider value={[updateSets, available_1, available_2, projects]}>
-                <div>
+                <div className={"hardware-page-container"}>
                     <HardwareList
                         name_1 = {name_1}
                         name_2 = {name_2}

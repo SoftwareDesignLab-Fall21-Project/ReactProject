@@ -14,6 +14,8 @@ function HardwareList(props){
     return (
         <div className={"hardware-list"}>
             <HardwareSet
+                className={"hardware-set"}
+                style={{gridRow: 0}}
                 name = {props.name_1}
                 number = {1}
                 capacity = {props.capacity_1}
@@ -21,6 +23,8 @@ function HardwareList(props){
                 projects = {props.projects}
             />
             <HardwareSet
+                className={"hardware-set"}
+                style={{gridRow: 1}}
                 name = {props.name_2}
                 number = {2}
                 capacity = {props.capacity_2}
