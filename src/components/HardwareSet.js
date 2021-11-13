@@ -1,19 +1,67 @@
 import "./HardwareList.css"
 import {Card, CardHeader, Button, CardContent, TextField, Box, InputLabel, MenuItem, FormControl, Select, OutlinedInput, Slider} from "@mui/material";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
+import {hwSetContext} from "../pages/HardwarePage.js";
 
 function HardwareSet(props){
+    const updateHardwarePage = useContext(hwSetContext)[0];
+    const capacity = props.capacity;
 
-    const [capacity, setCapacity] = useState(props.capacity);
-    const [available, setAvailable] = useState(props.available);
-    const [projects, setProjects] = useState(props.projects);
+    // const [capacity, setCapacity] = useState(props.capacity);
+    const available = useContext(hwSetContext)[props.number];
+    const projects = useContext(hwSetContext)[3];
+
+    // const [projects, setProjects] = useState(props.projects);
 
    
+    const [sliderNum, setSliderNum] = useState(0);
 
     const [name, setName] = useState([]);
 
     const handleChange = (event) => {
         setName(event.target.value);
+    };
+
+    const checkoutHardware = (Event) => {
+        Event.preventDefault();
+        const data = new FormData(Event.target);
+        data.append('project_name', name);
+        data.append('hw_name', props.name);
+        data.append('number', sliderNum);
+
+        fetch('/checkout-hw', {
+          method: 'POST',
+          body: data,
+        }).then(response => {
+                if(!response.ok)
+                    throw new Error("HTTP request error: " + response.status);
+                return response.json();
+        }).then(json => {
+            if (json[0]['success'] === "true") {
+                updateHardwarePage();
+            }
+        });
+
+    };
+
+    const returnHardware = () => {
+        const data = new FormData(Event.target);
+        data.append('project_name', name);
+        data.append('hw_name', props.name);
+        data.append('number', capacity-available);
+
+        fetch('/return-hw', {
+          method: 'POST',
+          body: data,
+        }).then(response => {
+                if(!response.ok)
+                    throw new Error("HTTP request error: " + response.status);
+                return response.json();
+        }).then(json => {
+            if (json[0]['success'] === "true") {
+                updateHardwarePage();
+            }
+        });
     };
 
 
@@ -43,22 +91,27 @@ function HardwareSet(props){
                         ))}
                     </Select>
                 </FormControl>
-                <div id="slider-control">
+
+                <form onSubmit={checkoutHardware}>
+                    <div id="slider-control">
                     <Slider
                         aria-label="Always visible"
                         defaultValue={0}
                         // getAriaValueText={valuetext}
                         step={1}
                         min={0}
-                        max={props.available}
+                        max={parseInt(available)}
                         valueLabelDisplay="on"
+                        name="num_hw"
+                        onChange={(Event) => {setSliderNum(Event.target.value)}}
                     />
-                </div>
+                    </div>
+                    <div id="button-return" >
+                        <Button variant="outlined" type="submit">Checkout Selected</Button>
+                    </div>
+                </form>
                 <div id="button-return">
-                    <Button variant="outlined">Checkout Hardware</Button>
-                </div>
-                <div id="button-return">
-                    <Button variant="outlined">Return Hardware</Button>
+                    <Button variant="outlined" onClick={returnHardware}>Return All</Button>
                 </div>
             </CardContent>
         </Card>
