@@ -1,7 +1,6 @@
 import "./DatasetList.css"
-import axios from "axios";
-import React, {useEffect, useState} from "react";
-import {DataGrid, GridColDef, GridRowsProp} from '@mui/x-data-grid';
+import React from "react";
+import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import {GridRenderCellParams} from "@mui/x-data-grid";
 import {IconButton, Tooltip} from "@mui/material";
 import DownloadIcon from '@mui/icons-material/Download';

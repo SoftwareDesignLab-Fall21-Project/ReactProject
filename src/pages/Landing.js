@@ -7,32 +7,26 @@ import axios from 'axios';
 function Landing(){
 
     const [user, setUser] = useState("");
-    const [signIn, setSignIn] = useState(false);
+    // const [projectName, setProjectName] = useState("");
+    //
+    // const updateProjectName = (Event) => {
+    //     setProjectName(Event.target.value);
+    // };
 
-    
-    // useEffect(()=>{
+    const createProject = (Event) => {
+        Event.preventDefault();
+        const data = new FormData(Event.target);
 
-    //     const fetchData = async () => {
-    //         const result = await axios(
-    //             'get-user',
-    //         );
-    //         return result;
-    //     };
-    //     fetchData().then(
-    //         function(response){
-    //             console.log("useEffect -- landing");
-    //             console.log(response.data['success']);
-    //             if(response.data['success']=="true"){
-    //                 setUser(response.data['user']);
-    //                 setSignIn(true);
-    //             }else{
-    //                 setSignIn(false);
-    //             }
-    //         }
-    //     )
-    // }, []);
+        fetch('/create-project', {
+          method: 'POST',
+          body: data,
+        }).then((response) => {
+            console.log(response);
+        });
+    };
 
-        return (
+
+    return (
         <div>
             <h1>Welcome {user}</h1>
             <Grid container direction={"column"} alignItems={"center"} justify={"center"}>
@@ -53,18 +47,37 @@ function Landing(){
                             <p> Create new project</p>
                         </div>
                         <div className="spacing-1">
-                        <TextField
-                            id="standard-basic"
-                            label="Project Name"
-                            variant="standard"/>
-                        </div>
-                        <div className="spacing-1">
-                            <Button
-                                sx={{m: 1}}
-                                variant={"outlined"}
-                                size={"small"}>
-                                submit
-                            </Button>
+                            <form onSubmit={createProject}>
+                                <div className="centered-form-element"><TextField
+                                    id="standard-basic"
+                                    label="Project Name"
+                                    variant="standard"
+                                    name="project_name"/>
+                                </div>
+                                <div className="centered-form-element"><TextField
+                                    id="standard-basic"
+                                    label="Project Description"
+                                    variant="standard"
+                                    name="project_description"/>
+                                </div>
+                                <div className="centered-form-element"><TextField
+                                    id="standard-basic"
+                                    label="Project ID"
+                                    variant="standard"
+                                    name="project_id"/>
+                                </div>
+                                <div className="centered-form-element" style={{marginTop: "10%"}}>
+
+                                    <Button
+                                        sx={{m: 1}}
+                                        variant={"outlined"}
+                                        size={"small"}
+                                        type="submit">
+                                        Create
+                                    </Button>
+                                </div>
+
+                            </form>
                         </div>
                     </CardContent>
                 </Card>

@@ -7,7 +7,6 @@ import DatasetPage from "./pages/DatasetPage";
 import HardwarePage from './pages/HardwarePage';
 import {Card, CardHeader, Button, CardContent, TextField} from "@mui/material";
 import axios from 'axios';
-import {siLK} from "@mui/material/locale";
 
 
 export const signedInContext = createContext();
@@ -69,8 +68,8 @@ function App() {
             <div>
                 <Card className="sign-in-dialog">
                     <CardContent>
-                        <h4>Already have an account?</h4>
                         <form id="loginForm" action="/login" method="POST" onSubmit={handleSubmitLogin}>
+                            <h4>Already have an account?</h4>
                             <TextField className="username-password" id="standard-basic" label="Username"
                                        variant="standard" name="username"/>
                             <TextField className="username-password" id="standard-basic" label="Password"
@@ -81,8 +80,9 @@ function App() {
                                 </Button>
                             </div>
                         </form>
-                        <h4>New User?</h4>
+
                         <form id="signupForm" action="/signup" method="POST" onSubmit={handleSubmitRegister}>
+                            <h4 className="centered-form-bold">New User?</h4>
                             <TextField className="username-password" id="standard-basic" label="New Username"
                                        variant="standard" name="newuser"/>
                             <TextField className="username-password" id="standard-basic" label="New Password"

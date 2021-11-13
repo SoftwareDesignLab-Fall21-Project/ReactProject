@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from "react";
+import React, {useContext} from "react";
 import {AppBar, IconButton, Toolbar, Typography, Button, CardContent, TextField, Card} from "@mui/material";
 import './navBar.css'
 import {Link, useHistory} from "react-router-dom";
@@ -45,8 +45,6 @@ function NavBar() {
                                         function(response){
                                             console.log(response.data['success'] + '-- nav');
                                             setSignIn(response.data['success']);
-                                            // var Router = require('react-router');
-                                            // Router.browserHistory.push('/datasets');
                                         }
                                     )
                                     }}>

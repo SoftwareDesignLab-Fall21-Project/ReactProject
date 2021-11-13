@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     margin-top: 10%;
+    width: 300px;
 }
 
 .spacing-2{
@@ -33,6 +34,8 @@ p{
 
 .username-password{
     margin-left: 5% !important;
+    justify-content: center;
+    display: flex !important;
 }
 
 #button-wrapper{
@@ -41,5 +44,14 @@ p{
 }
 
 #login-button{
-    margin-top: 2%;
+    margin-top: 10%;
+}
+
+#standard_basic{
+    width: 500px;
+}
+
+.centered-form-element{
+    display: flex;
+    justify-content: center;
 }
