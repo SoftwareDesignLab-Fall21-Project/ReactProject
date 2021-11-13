@@ -37,7 +37,7 @@ function HardwarePage(){
         console.log('got here');
         const fetchData = async () => {
             const result = await axios(
-                '/get-hardware',
+                '/get-db',
             );
             console.log('got here');
             console.log(result);
