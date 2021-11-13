@@ -5,3 +5,16 @@
     margin-left: 30%;
     margin-right: 30%;
 }
+
+#button-return{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+#slider-control{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 6%;
+    margin-bottom: 5%;
+}

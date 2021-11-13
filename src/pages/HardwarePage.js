@@ -37,7 +37,7 @@ function HardwarePage(){
         console.log('got here');
         const fetchData = async () => {
             const result = await axios(
-                '/get-hardware',
+                '/get-db',
             );
             console.log('got here');
             console.log(result);
@@ -76,6 +76,8 @@ function HardwarePage(){
                 capacity_2 = {capacity_2}
                 available_1 = {available_1}
                 available_2 = {available_2}
+
+                projects = {projects}
             />
             <ProjectList
                 projects = {projects}
