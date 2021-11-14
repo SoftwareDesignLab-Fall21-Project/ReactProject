@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {AppBar, IconButton, Toolbar, Typography, Button, CardContent, TextField, Card} from "@mui/material";
 import './navBar.css'
 import {Link, useHistory} from "react-router-dom";
@@ -9,7 +9,14 @@ import {signedInContext} from "../App.js";
 function NavBar() {
     const signin = useContext(signedInContext)[0];
     const setSignIn = useContext(signedInContext)[1];
-    if (signin) {
+    const logout = useContext(signedInContext)[2];
+    const [dummy2, setDummy2] = useState(0);
+
+    // useEffect(()=>{
+    //    setDummy(dummy2+2);
+    // }, [dummy2, setDummy]);
+
+    // if (signin) {
         return (
             <AppBar className='navbar' position="static">
                 <Toolbar variant="dense">
@@ -35,19 +42,8 @@ function NavBar() {
                         <Link to="/" className="nav-link">
                             <Button variant="outlined" color="info"
                                 onClick={() => {
-                                    const fetchData = async () => {
-                                        const result = await axios(
-                                            'logout',
-                                        );
-                                        return result;
-                                    };
-                                    fetchData().then(
-                                        function(response){
-                                            console.log(response.data['success'] + '-- nav');
-                                            setSignIn(response.data['success']);
-                                        }
-                                    )
-                                    }}>
+                                    logout();
+                                }}>
                                 Logout
                                </Button>
                         </Link>
@@ -55,29 +51,29 @@ function NavBar() {
                 </Toolbar>
             </AppBar>
         );
-    }
-    else{
-        return (
-        <Card className="sign-in-dialog">
-            <CardContent>
-                <h4>Already have an account?</h4>
-                <TextField className="username-password" id="standard-basic" label="Username" variant="standard" />
-                <TextField className="username-password" id="standard-basic" label="Password" variant="standard" />
-                <div id="button-wrapper">
-                    <Button id="login-button" variant="outlined">Sign In</Button>
-                </div>
-                <h4>New User?</h4>
-                <TextField className="username-password" id="standard-basic" label="New Username" variant="standard" />
-                <TextField className="username-password" id="standard-basic" label="New Password" variant="standard" />
-                <div id="button-wrapper">
-                    <Button id="login-button" variant="outlined">Sign Up</Button>
-                </div>
-            </CardContent>
-            <Button id="login-button" variant="contained" onClick={() => {
-                setSignIn(true);
-            }}>Development Signin</Button>
-        </Card>
-        )
-    }
+    // }
+    // else{
+    //     return (
+    //     <Card className="sign-in-dialog">
+    //         <CardContent>
+    //             <h4>Already have an account?</h4>
+    //             <TextField className="username-password" id="standard-basic" label="Username" variant="standard" />
+    //             <TextField className="username-password" id="standard-basic" label="Password" variant="standard" />
+    //             <div id="button-wrapper">
+    //                 <Button id="login-button" variant="outlined">Sign In</Button>
+    //             </div>
+    //             <h4>New User?</h4>
+    //             <TextField className="username-password" id="standard-basic" label="New Username" variant="standard" />
+    //             <TextField className="username-password" id="standard-basic" label="New Password" variant="standard" />
+    //             <div id="button-wrapper">
+    //                 <Button id="login-button" variant="outlined">Sign Up</Button>
+    //             </div>
+    //         </CardContent>
+    //         <Button id="login-button" variant="contained" onClick={() => {
+    //             // setSignIn(true);
+    //         }}>Development Signin</Button>
+    //     </Card>
+    //     )
+    // }
 }
 export default NavBar;

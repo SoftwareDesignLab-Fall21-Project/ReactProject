@@ -17,6 +17,7 @@ function HardwareSet(props){
     const [sliderNum, setSliderNum] = useState(0);
 
     const [name, setName] = useState([]);
+    const [projectNum, setProjectNum] = useState(-1);
 
     const handleChange = (event) => {
         setName(event.target.value);
@@ -48,7 +49,18 @@ function HardwareSet(props){
         const data = new FormData(Event.target);
         data.append('project_name', name);
         data.append('hw_name', props.name);
-        data.append('number', capacity-available);
+        projects.forEach((project) => {
+            if(project.Name === name){
+                if(props.number === 1){
+                    data.append('number', project.HardwareSet1);
+                }else{
+                    data.append('number', project.HardwareSet2);
+                }
+            }
+        });
+
+
+
 
         fetch('/return-hw', {
           method: 'POST',

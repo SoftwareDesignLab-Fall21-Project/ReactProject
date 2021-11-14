@@ -1,11 +1,11 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import React, {useState, useEffect, createContext} from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React, {createContext, useEffect, useState} from 'react';
 import NavBar from "./components/navBar";
 import Landing from "./pages/Landing";
 import DatasetPage from "./pages/DatasetPage";
 import HardwarePage from './pages/HardwarePage';
-import {Card, CardHeader, Button, CardContent, TextField} from "@mui/material";
+import {Button, Card, CardContent, TextField} from "@mui/material";
 import axios from 'axios';
 
 
@@ -15,7 +15,7 @@ function App() {
 
     const [loginResponse, setLoginResponse] = useState(null);
     const [signin, setSignin] = useState(false);
-
+    const [dummy, setDummy] = useState(false);
 
     const handleSubmitLogin = (Event) => {
         Event.preventDefault();
@@ -25,6 +25,7 @@ function App() {
           method: 'POST',
           body: data,
         }).then((response) => {
+            console.log("login");
             setLoginResponse(response);
         });
     }
@@ -41,18 +42,24 @@ function App() {
         });
     }
 
-    useEffect(()=>{
+    const logout = (Event) => {
+        fetch('/logout', {
+          method: 'GET'
+        }).then((response) => {
+            console.log("logout");
+            setLoginResponse(response);
+        });
+    };
 
+    useEffect(()=>{
         const fetchData = async () => {
-            const result = await axios(
-                'get-user',
-            );
-            return result;
+        const result = await axios(
+            'get-user',
+        );
+        return result;
         };
         fetchData().then(
             function(response){
-                console.log("useEffect -- App");
-                console.log(response.data['success']);
                 if (response.data['success'] === "true") {
                     setSignin(true);
                 }else{
@@ -60,7 +67,8 @@ function App() {
                 }
             }
         )
-    }, [signin, loginResponse]);
+
+    }, [loginResponse]);
 
 
     if(!signin){
@@ -100,7 +108,7 @@ function App() {
     }else{
         return (
             <>
-                <signedInContext.Provider value={[signin, setSignin]}>
+                <signedInContext.Provider value={[signin, setSignin, logout]}>
                    <Router>
                         <NavBar/>
                         <div id="page-container">
