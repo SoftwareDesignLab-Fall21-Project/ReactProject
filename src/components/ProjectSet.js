@@ -1,22 +1,11 @@
 import "./ProjectList.css"
 import {Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper} from "@mui/material";
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext} from 'react';
 import {hwSetContext} from "../pages/HardwarePage";
 
 function ProjectSet(props){
 
     const projects = useContext(hwSetContext)[3];
-
-    /*
-    function createData(Name, HardwareSet1, HardwareSet2) {
-        return { Name, HardwareSet1, HardwareSet2};
-      }
-      
-      const projects = [
-        createData('Project A', 0, 0),
-        createData('Project B', 0, 0),
-      ];
-      */
 
 
     return (

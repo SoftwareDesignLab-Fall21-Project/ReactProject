@@ -1,23 +1,20 @@
 import "./HardwareList.css"
-import {Card, CardHeader, Button, CardContent, TextField, Box, InputLabel, MenuItem, FormControl, Select, OutlinedInput, Slider} from "@mui/material";
-import React, { useState, useEffect, useContext} from 'react';
+import {Card, Button, CardContent, InputLabel, MenuItem, FormControl, Select, OutlinedInput, Slider} from "@mui/material";
+import React, { useState, useContext} from 'react';
 import {hwSetContext} from "../pages/HardwarePage.js";
 
 function HardwareSet(props){
     const updateHardwarePage = useContext(hwSetContext)[0];
     const capacity = props.capacity;
 
-    // const [capacity, setCapacity] = useState(props.capacity);
     const available = useContext(hwSetContext)[props.number];
     const projects = useContext(hwSetContext)[3];
 
-    // const [projects, setProjects] = useState(props.projects);
 
    
     const [sliderNum, setSliderNum] = useState(0);
 
-    const [name, setName] = useState([]);
-    const [projectNum, setProjectNum] = useState(-1);
+    const [name, setName] = useState("");
 
     const handleChange = (event) => {
         setName(event.target.value);
@@ -115,7 +112,9 @@ function HardwareSet(props){
                         max={parseInt(available)}
                         valueLabelDisplay="on"
                         name="num_hw"
-                        onChange={(Event) => {setSliderNum(Event.target.value)}}
+                        onChange={(Event) => {
+                            setSliderNum(Event.target.value);
+                        }}
                     />
                     </div>
                     <div id="button-return" >

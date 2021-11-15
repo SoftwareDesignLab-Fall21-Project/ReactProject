@@ -1,17 +1,11 @@
 import './Landing.css'
-import React, { useState, useEffect } from 'react';
-import {Card, CardHeader, Button, CardContent, TextField, Grid} from "@mui/material";
-import axios from 'axios';
+import React, {useContext} from 'react';
+import {Card, Button, CardContent, TextField, Grid} from "@mui/material";
+import {signedInContext} from "../App";
 
 
 function Landing(){
-
-    const [user, setUser] = useState("");
-    // const [projectName, setProjectName] = useState("");
-    //
-    // const updateProjectName = (Event) => {
-    //     setProjectName(Event.target.value);
-    // };
+    const user = useContext(signedInContext)[3];
 
     const createProject = (Event) => {
         Event.preventDefault();
@@ -28,21 +22,12 @@ function Landing(){
 
     return (
         <div>
-            <h1>Welcome {user}</h1>
+
             <Grid container direction={"column"} alignItems={"center"} justify={"center"}>
-                {/* <p> Use existing project</p>
-                <TextField
-                    id="standard-basic"
-                    label="Project Name"
-                    variant="standard"/>
-                <Button
-                    sx={{m: 1}}
-                    variant={"outlined"}
-                    size={"small"}>
-                    submit
-                </Button> */}
-                <Card>
-                    <CardContent>
+                <div className={"card-container"}>
+                    <h1>Welcome {user}</h1>
+                    <Card>
+                        <CardContent>
                         <div className="spacing-2">
                             <p> Create new project</p>
                         </div>
@@ -80,7 +65,8 @@ function Landing(){
                             </form>
                         </div>
                     </CardContent>
-                </Card>
+                    </Card>
+                </div>
             </Grid>
         </div>
     );

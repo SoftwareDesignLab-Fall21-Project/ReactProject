@@ -1,6 +1,5 @@
 import "./DatasetPage.css";
 import DatasetList from "../components/DatasetList";
-import axios from "axios";
 import React, {useEffect, useState} from "react";
 
 function DatasetPage(){

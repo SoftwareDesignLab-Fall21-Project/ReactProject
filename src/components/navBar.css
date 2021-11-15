@@ -4,5 +4,13 @@
 
 .nav-link{
     text-decoration: none !important;
+    white-space: nowrap;
 }
 
+.nav-button{
+    margin-left: 5px;
+}
+
+.MuiToolbar-dense{
+    padding-left: 16px !important;
+}

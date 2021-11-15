@@ -5,7 +5,7 @@ import NavBar from "./components/navBar";
 import Landing from "./pages/Landing";
 import DatasetPage from "./pages/DatasetPage";
 import HardwarePage from './pages/HardwarePage';
-import {Button, Card, CardContent, TextField} from "@mui/material";
+import {Button, Card, CardContent, Grid, TextField} from "@mui/material";
 import axios from 'axios';
 
 
@@ -15,7 +15,7 @@ function App() {
 
     const [loginResponse, setLoginResponse] = useState(null);
     const [signin, setSignin] = useState(false);
-    const [dummy, setDummy] = useState(false);
+    const [username, setUsername] = useState("");
 
     const handleSubmitLogin = (Event) => {
         Event.preventDefault();
@@ -74,41 +74,44 @@ function App() {
     if(!signin){
         return (
             <div>
-                <Card className="sign-in-dialog">
-                    <CardContent>
-                        <form id="loginForm" action="/login" method="POST" onSubmit={handleSubmitLogin}>
-                            <h4>Already have an account?</h4>
-                            <TextField className="username-password" id="standard-basic" label="Username"
-                                       variant="standard" name="username"/>
-                            <TextField className="username-password" id="standard-basic" label="Password"
-                                       variant="standard" name="password"/>
-                            <div id="button-wrapper">
-                                <Button id="login-button" variant="outlined" type="submit" form="loginForm">
-                                    Log In
-                                </Button>
-                            </div>
-                        </form>
+                <Grid container direction={"column"} alignItems={"center"} justify={"center"}>
+                    <Card className="sign-in-dialog">
+                        <CardContent>
+                            <form id="loginForm" action="/login" method="POST" onSubmit={handleSubmitLogin}>
+                                <h4>Already have an account?</h4>
+                                <TextField className="username-password" id="standard-basic" label="Username"
+                                           variant="standard" name="username"
+                                           onChange={(Event) => {setUsername(Event.target.value)}}/>
+                                <TextField className="username-password" id="standard-basic" label="Password"
+                                           variant="standard" name="password"/>
+                                <div id="button-wrapper">
+                                    <Button id="login-button" variant="outlined" type="submit" form="loginForm">
+                                        Log In
+                                    </Button>
+                                </div>
+                            </form>
 
-                        <form id="signupForm" action="/signup" method="POST" onSubmit={handleSubmitRegister}>
-                            <h4 className="centered-form-bold">New User?</h4>
-                            <TextField className="username-password" id="standard-basic" label="New Username"
-                                       variant="standard" name="newuser"/>
-                            <TextField className="username-password" id="standard-basic" label="New Password"
-                                       variant="standard" name="newpass"/>
-                            <div id="button-wrapper">
-                                <Button id="login-button" variant="outlined" type="submit">
-                                    Sign Up
-                                </Button>
-                            </div>
-                        </form>
-                    </CardContent>
-                </Card>
+                            <form id="signupForm" action="/signup" method="POST" onSubmit={handleSubmitRegister}>
+                                <h4 className="centered-form-bold">New User?</h4>
+                                <TextField className="username-password" id="standard-basic" label="New Username"
+                                           variant="standard" name="newuser"/>
+                                <TextField className="username-password" id="standard-basic" label="New Password"
+                                           variant="standard" name="newpass"/>
+                                <div id="button-wrapper">
+                                    <Button id="login-button" variant="outlined" type="submit">
+                                        Sign Up
+                                    </Button>
+                                </div>
+                            </form>
+                        </CardContent>
+                    </Card>
+                </Grid>
             </div>
         );
     }else{
         return (
             <>
-                <signedInContext.Provider value={[signin, setSignin, logout]}>
+                <signedInContext.Provider value={[signin, setSignin, logout, username]}>
                    <Router>
                         <NavBar/>
                         <div id="page-container">
